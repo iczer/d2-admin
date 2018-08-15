@@ -1,31 +1,24 @@
 <template>
   <d2-container>
-    <d2-demo-page-header slot="header" title="基本示例"/>
+    <template slot="header">基本示例</template>
     <d2-quill
       style="min-height: 200px;"
       v-model="value"
       @text-change="textChangeHandler"
       @selection-change="selectionChangeHandler"
       @editor-change="editorChangeHandler"/>
-    <el-card shadow="never" class="d2-mt">
-      <d2-highlight :code="formated"/>
+    <el-card shadow="never" class="d2-card d2-mt">
+      <d2-highlight :code="value" format-html/>
     </el-card>
   </d2-container>
 </template>
 
 <script>
-import htmlFormat from '@/libs/htmlFormat.js'
 import value from './value'
 export default {
   data () {
     return {
-      htmlFormat,
       value
-    }
-  },
-  computed: {
-    formated () {
-      return htmlFormat(this.value)
     }
   },
   methods: {

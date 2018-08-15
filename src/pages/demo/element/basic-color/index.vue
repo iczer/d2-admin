@@ -1,6 +1,6 @@
 <template>
   <d2-container>
-    
+
     <h1 class="d2-mt-0">主色</h1>
     <el-row :gutter="20">
       <el-col :span="6">
@@ -33,7 +33,7 @@
         </div>
       </el-col>
     </el-row>
-  
+
     <h1>中性色</h1>
     <el-row :gutter="20" class="d2-mb">
       <el-col :span="6">
@@ -79,7 +79,7 @@
         </div>
       </el-col>
     </el-row>
-    
+
   </d2-container>
 </template>
 
@@ -91,9 +91,8 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
-@import '~@/assets/style/unit/_color.scss';
+@import '~@/assets/style/unit/color.scss';
 .color {
   border-radius: 4px;
   height: 90px;
@@ -142,4 +141,3 @@ export default {
   background-color: $color-border-4;
 }
 </style>
-

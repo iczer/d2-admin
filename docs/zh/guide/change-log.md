@@ -1,5 +1,55 @@
 # 更新日志
 
+## v1.1.8
+
+* [ 新增 ] 增加了错误收集和日志收集功能
+* [ 新增 ] 增加了一个表格示例页面
+* [ 修改 ] bug 修复
+
+## v1.1.7
+
+* [ 修改 ] 多标签页右键菜单 bug 修复
+
+## v1.1.6
+
+* [ 新增 ] 新增加了多页控制组件 tab 按钮上的右键操作菜单，现在你可以在 D2Admin 中像使用浏览器一样操作多标签页
+
+## v1.1.5
+
+* [ 修改 ] vue-cli3 项目重构，目录调整
+* [ 修改 ] 全局状态管理设计优化
+* [ 修改 ] 多标签页操作全部转移至 vuex
+* [ 修改 ] 修复了多标签页无法清除缓存的 bug
+* [ 修改 ] bug fixed [#38](https://github.com/d2-projects/d2-admin/issues/38)
+* [ 修改 ] bug fixed [#41](https://github.com/d2-projects/d2-admin/issues/41)
+* [ 修改 ] 侧边栏和顶栏菜单数据控制转移到 vuex 集中管理
+* [ 修改 ] 页面最小宽度设置
+* [ 新增 ] d2-highlight 组件新增 format-html 参数
+* [ 新增 ] 自动获取用户浏览器 UA
+* [ 新增 ] playground 新增浏览器信息查看界面
+* [ 修改 ] 登陆注销逻辑移至 vuex
+* [ 新增 ] 登陆页面新增快速选择用户示例
+* [ 新增 ] 侧边栏切换控制辑移至 vuex
+* [ 新增 ] 判断手机浏览自动跳转至提示页面
+* [ 修改 ] 侧边栏弹出菜单尺寸缩小以容纳更多菜单
+* [ 修改 ] d2-container 组件重构，每种模式现都支持 scroll 属性以及 header footer 插槽
+* [ 修改 ] 修复全屏按钮退出全屏状态不更新的 bug
+* [ 修改 ] 修复多标签页缓存逻辑 bug
+* [ 新增 ] 持久化存储根据系统版本区分数据，防止因更新导致数据错乱
+* [ 新增 ] 注销画面灰度效果
+* [ 新增 ] .d2-card 样式类，可以让 el-card 具有跟随主题变化的样式
+* [ 新增 ] ElementUI 表格组件全部示例移植
+* [ 新增 ] 全局状态管理 playground
+* [ 新增 ] 用户私有持久化数据 playground
+* [ 新增 ] 侧边栏和顶栏菜单设置 playground
+* [ 新增 ] d2-container 组件 card 模式下 footer 样式优化
+* [ 修改 ] 侧边栏折叠模式下弹出菜单尺寸缩小
+* [ 修改 ] 默认取消了侧边栏的自定义滚动条显示
+* [ 新增 ] cookie 读写包装
+* [ 新增 ] 持久化存储读写包装，提供快速操作当前用户数据的 mutation
+* [ 新增 ] 持久化存储读写包装，提供快速操作所有用户共享数据的 mutation
+* [ 新增 ] 侧边栏折叠状态现在会根据用户区分记录，刷新页面保留之前的状态
+
 ## v1.1.4
 
 * [ 修改 ] 全局状态管理设计优化
@@ -74,6 +124,6 @@
 
 ## v1.0.0
 
-[https://github.com/FairyEver/d2-admin/releases/tag/v1.0.0](https://github.com/FairyEver/d2-admin/releases/tag/v1.0.0)
+[https://github.com/d2-projects/d2-admin/releases/tag/v1.0.0](https://github.com/d2-projects/d2-admin/releases/tag/v1.0.0)
 
 这是第一个版本，还有一点小问题，但是已经可用

@@ -1,22 +1,16 @@
 <template>
-  <d2-container type="full" scroll>
-    <template slot="header">
-      我是插入到 header 中的内容
-    </template>
-    <d2-markdown :source="doc"/>
-    <template slot="footer">
-      <d2-demo-link-btn title="D2Admin" link="https://github.com/FairyEver/d2-admin"/>
-    </template>
+  <d2-container better-scroll>
+    <template slot="header">Header</template>
+    <d2-demo-article/>
+    <template slot="footer">Header</template>
   </d2-container>
 </template>
 
 <script>
-import doc from './md/doc-full-bs.md'
+import d2DemoArticle from './components/d2-demo-article'
 export default {
-  data () {
-    return {
-      doc
-    }
+  components: {
+    'd2-demo-article': d2DemoArticle
   }
 }
 </script>

@@ -10,6 +10,8 @@
 @import '~@/assets/style/fixed/vue-splitpane.scss';
 // 补丁 vue-grid-layout
 @import '~@/assets/style/fixed/vue-grid-layout.scss';
+// 补丁 tree-view
+@import '~@/assets/style/fixed/tree-view.scss';
 
 // 动画
 @import '~@/assets/style/animate/vue-transition.scss';
@@ -40,9 +42,9 @@
 }
 
 // 边距相关
-$sizes: (0, 10, 15, 20);
+$sizes: (0, 5, 10, 15, 20);
 
-@for $index from 1 to 5 {
+@for $index from 1 to 6 {
   .#{$prefix}-m-#{nth($sizes, $index)} { margin: #{nth($sizes, $index)}px !important; }
   .#{$prefix}-mt-#{nth($sizes, $index)} { margin-top: #{nth($sizes, $index)}px !important; }
   .#{$prefix}-mr-#{nth($sizes, $index)} { margin-right: #{nth($sizes, $index)}px !important; }

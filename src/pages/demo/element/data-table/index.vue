@@ -1,7 +1,41 @@
 <template>
-  <d2-container>
-    <h1 class="d2-mt-0">该页面尚未完成组件示例搬运</h1>
-    <p>D2Admin 的构建依托于由饿了么出品的 ElementUI，欲了解更多该组件的信息请查阅以下链接</p>
-    <d2-demo-link-btn title="Element" link="http://element.eleme.io/#/zh-CN"/>
+  <d2-container type="ghost">
+    <template slot="header">表格组件</template>
+    <div class="d2-mt d2-mr">
+      <el-card
+        v-for="(table, index) in tableList"
+        :key="index"
+        shadow="never"
+        class="d2-card d2-mb">
+        <template slot="header">{{table.title}}</template>
+        <component :is="table.component"/>
+      </el-card>
+    </div>
   </d2-container>
 </template>
+
+<script>
+import sortby from 'lodash.sortby'
+const req = context => context.keys().map(context)
+const tables = req(require.context('./components', true, /\.vue$/))
+const components = {}
+const tableList = []
+sortby(tables.map(e => ({
+  component: e.default,
+  index: e.default.index
+})), ['index']).forEach((table, index) => {
+  components[`d2-demo-el-table-${index + 1}`] = table.component
+  tableList.push({
+    title: table.component.title,
+    component: `d2-demo-el-table-${index + 1}`
+  })
+})
+export default {
+  components,
+  data () {
+    return {
+      tableList
+    }
+  }
+}
+</script>

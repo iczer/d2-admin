@@ -28,7 +28,7 @@
         <el-checkbox :indeterminate="true" label="复选框"></el-checkbox>
 
         <h1>可选项目数量的限制</h1>
-        <el-checkbox-group 
+        <el-checkbox-group
           v-model="checkedCities"
           :min="1"
           :max="2">

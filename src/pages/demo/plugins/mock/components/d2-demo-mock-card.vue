@@ -62,5 +62,3 @@ export default {
   border-color: lighten($color-success, 40%);
 }
 </style>
-
-

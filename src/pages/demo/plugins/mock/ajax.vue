@@ -1,9 +1,17 @@
 <template>
   <d2-container>
     <div slot="header">
-      <el-button @click="ajax">发送请求</el-button>
+      <el-button
+        size="mini"
+        type="primary"
+        @click="ajax">
+        <d2-icon name="paper-plane"/>
+        发送请求
+      </el-button>
     </div>
-    <el-table v-bind="table" style="width: 100%">
+    <el-table
+      v-bind="table"
+      style="width: 100%">
       <el-table-column
         v-for="(item, index) in table.columns"
         :key="index"
@@ -29,14 +37,14 @@ export default {
   },
   methods: {
     ajax () {
-      this.$axios.get('/api/ajax-demo')
-      .then(res => {
-        this.table.columns = Object.keys(res.list[0]).map(e => ({
-          label: e,
-          prop: e
-        }))
-        this.table.data = res.list
-      })
+      this.$axios.get('/api/demo/plugins/mock/ajax')
+        .then(res => {
+          this.table.columns = Object.keys(res.list[0]).map(e => ({
+            label: e,
+            prop: e
+          }))
+          this.table.data = res.list
+        })
     }
   }
 }

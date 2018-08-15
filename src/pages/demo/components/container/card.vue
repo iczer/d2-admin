@@ -1,17 +1,14 @@
 <template>
-  <d2-container>
-    <template slot="header">我是插入到 header 中的内容</template>
-    <d2-markdown :source="doc"/>
+  <d2-container type="card">
+    <d2-demo-article/>
   </d2-container>
 </template>
 
 <script>
-import doc from './md/doc-card.md'
+import d2DemoArticle from './components/d2-demo-article'
 export default {
-  data () {
-    return {
-      doc
-    }
+  components: {
+    'd2-demo-article': d2DemoArticle
   }
 }
 </script>

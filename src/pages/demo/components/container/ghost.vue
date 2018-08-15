@@ -1,18 +1,18 @@
 <template>
   <d2-container type="ghost">
-    <el-card shadow="never" class="d2-mt" style="width: 50%;">
-      <d2-markdown :source="doc"/>
-    </el-card>
+    <div class="d2-pt d2-pb">
+      <el-card shadow="never" class="d2-card" style="width: 400px;">
+        <d2-demo-article/>
+      </el-card>
+    </div>
   </d2-container>
 </template>
 
 <script>
-import doc from './md/doc-ghost.md'
+import d2DemoArticle from './components/d2-demo-article'
 export default {
-  data () {
-    return {
-      doc
-    }
+  components: {
+    'd2-demo-article': d2DemoArticle
   }
 }
 </script>

@@ -1,64 +1,49 @@
-const meta = { requiresAuth: true }
+// layout
+import layoutHeaderAside from '@/layout/header-aside'
 
-const alive = true
+const meta = { requiresAuth: true }
 
 /**
  * 在主框架内显示
  */
 const frameIn = [
-  // 首页
   {
     path: '/',
     redirect: { name: 'index' },
-    component: () => import('@/components/core/d2-layout-main'),
+    component: layoutHeaderAside,
     children: [
       {
         path: 'index',
         name: 'index',
         meta,
-        component: () => import('@/pages/core/index')
+        component: () => import('@/pages/index')
       }
     ]
-  },
-  {
-    path: '/core/setting',
-    name: 'core-setting',
-    meta,
-    redirect: { name: 'core-setting-index' },
-    component: () => import('@/components/core/d2-layout-main'),
-    children: (pre => [
-      { path: 'index', name: `${pre}index`, component: () => import('@/pages/core/setting/index'), meta: { ...meta, title: '设置首页' } },
-      { path: 'theme/theme', name: `${pre}theme-theme`, component: () => import('@/pages/core/setting/theme/theme.vue'), meta: { ...meta, title: '选择主题' } },
-      { path: 'theme/custom', name: `${pre}theme-custom`, component: () => import('@/pages/core/setting/theme/custom.vue'), meta: { ...meta, title: '个性化' } },
-      { path: 'releases', name: `${pre}releases`, component: () => import('@/pages/core/setting/releases'), meta: { ...meta, title: '版本' } }
-    ])('core-setting-')
-  },
-  {
-    path: '/demo/business',
-    name: 'demo-business',
-    meta,
-    redirect: { name: 'demo-business-index' },
-    component: () => import('@/components/core/d2-layout-main'),
-    children: (pre => [
-      { path: 'index', name: `${pre}index`, component: () => import('@/pages/demo/business/index'), meta: { ...meta, title: '示例业务页面首页' } }
-    ])('demo-business-')
   },
   {
     path: '/demo/playground',
     name: 'demo-playground',
     meta,
     redirect: { name: 'demo-playground-index' },
-    component: () => import('@/components/core/d2-layout-main'),
+    component: layoutHeaderAside,
     children: (pre => [
       { path: 'index', name: `${pre}index`, component: () => import('@/pages/demo/playground/index'), meta: { ...meta, title: '试验台首页' } },
-      { path: 'theme', name: `${pre}theme`, component: () => import('@/pages/demo/playground/theme'), meta: { ...meta, title: '主题' } },
-      { path: 'fullscreen', name: `${pre}fullscreen`, component: () => import('@/pages/demo/playground/fullscreen'), meta: { ...meta, title: '全屏' } },
-      { path: 'gray', name: `${pre}gray`, component: () => import('@/pages/demo/playground/gray'), meta: { ...meta, title: '灰度模式' } },
-      { path: 'page-cache/on', name: `${pre}page-cache-on`, component: () => import('@/pages/demo/playground/page-cache/on.vue'), meta: { ...meta, alive, title: '开启缓存' } },
-      { path: 'page-cache/off', name: `${pre}page-cache-off`, component: () => import('@/pages/demo/playground/page-cache/off.vue'), meta: { ...meta, title: '关闭缓存' } },
+      { path: 'page-cache/on', name: `${pre}page-cache-on`, component: () => import('@/pages/demo/playground/page-cache/on.vue'), meta: { ...meta, title: '开启缓存' } },
+      { path: 'page-cache/off', name: `${pre}page-cache-off`, component: () => import('@/pages/demo/playground/page-cache/off.vue'), meta: { ...meta, notCache: true, title: '关闭缓存' } },
       { path: 'page-argu/send', name: `${pre}page-argu-send`, component: () => import('@/pages/demo/playground/page-argu/send.vue'), meta: { ...meta, title: '参数传递 发送' } },
       { path: 'page-argu/get/:username', name: `${pre}page-argu-get`, component: () => import('@/pages/demo/playground/page-argu/get.vue'), meta: { ...meta, title: '参数传递 接收' } },
-      { path: 'db', name: `${pre}db`, component: () => import('@/pages/demo/playground/db'), meta: { ...meta, title: '数据持久化' } }
+      { path: 'store/sys', name: `${pre}store-sys`, component: () => import('@/pages/demo/playground/store/sys'), meta: { ...meta, title: '系统状态' } },
+      { path: 'store/menu', name: `${pre}store-menu`, component: () => import('@/pages/demo/playground/store/menu'), meta: { ...meta, title: '菜单控制' } },
+      { path: 'store/ua', name: `${pre}store-ua`, component: () => import('@/pages/demo/playground/store/ua'), meta: { ...meta, title: '浏览器信息' } },
+      { path: 'store/gray', name: `${pre}store-gray`, component: () => import('@/pages/demo/playground/store/gray'), meta: { ...meta, title: '灰度模式' } },
+      { path: 'store/fullscreen', name: `${pre}store-fullscreen`, component: () => import('@/pages/demo/playground/store/fullscreen'), meta: { ...meta, title: '全屏' } },
+      { path: 'store/theme', name: `${pre}store-theme`, component: () => import('@/pages/demo/playground/store/theme'), meta: { ...meta, title: '主题' } },
+      { path: 'db/all', name: `${pre}db-all`, component: () => import('@/pages/demo/playground/db/all'), meta: { ...meta, title: '全部数据' } },
+      { path: 'db/user', name: `${pre}db-user`, component: () => import('@/pages/demo/playground/db/user'), meta: { ...meta, title: '用户数据' } },
+      { path: 'db/public', name: `${pre}db-public`, component: () => import('@/pages/demo/playground/db/public'), meta: { ...meta, title: '公用数据' } },
+      { path: 'log/log', name: `${pre}log-log`, component: () => import('@/pages/demo/playground/log/log'), meta: { ...meta, title: '日志记录' } },
+      { path: 'log/error', name: `${pre}log-error`, component: () => import('@/pages/demo/playground/log/error'), meta: { ...meta, title: '错误捕捉' } },
+      { path: 'env', name: `${pre}env`, component: () => import('@/pages/demo/playground/env'), meta: { ...meta, title: '环境信息' } }
     ])('demo-playground-')
   },
   {
@@ -66,17 +51,16 @@ const frameIn = [
     name: 'demo-plugins',
     meta,
     redirect: { name: 'demo-plugins-index' },
-    component: () => import('@/components/core/d2-layout-main'),
+    component: layoutHeaderAside,
     children: (pre => [
       { path: 'better-scroll/base', name: `${pre}better-scroll-base`, component: () => import('@/pages/demo/plugins/better-scroll/base.vue'), meta: { ...meta, title: '滚动插件基础' } },
       { path: 'better-scroll/to', name: `${pre}better-scroll-to`, component: () => import('@/pages/demo/plugins/better-scroll/to.vue'), meta: { ...meta, title: '滚动定位' } },
-      { path: 'build', name: `${pre}build`, component: () => import('@/pages/demo/plugins/build'), meta: { ...meta, title: '环境区分' } },
       { path: 'clipboard-polyfill', name: `${pre}clipboard-polyfill`, component: () => import('@/pages/demo/plugins/clipboard-polyfill'), meta: { ...meta, title: '剪贴板访问' } },
       { path: 'day', name: `${pre}day`, component: () => import('@/pages/demo/plugins/day'), meta: { ...meta, title: '日期计算' } },
       { path: 'export/table', name: `${pre}export-table`, component: () => import('@/pages/demo/plugins/export/table.vue'), meta: { ...meta, title: '导出表格' } },
       { path: 'export/txt', name: `${pre}export-txt`, component: () => import('@/pages/demo/plugins/export/txt.vue'), meta: { ...meta, title: '导出文本' } },
-      { path: 'i18n/demo1', name: `${pre}i18n-demo1`, component: () => import('@/pages/demo/plugins/i18n/demo1.vue'), meta: { ...meta, title: '多国语示例1' } },
-      { path: 'i18n/demo2', name: `${pre}i18n-demo2`, component: () => import('@/pages/demo/plugins/i18n/demo2.vue'), meta: { ...meta, title: '多国语示例2' } },
+      { path: 'i18n/demo1', name: `${pre}i18n-demo1`, component: () => import('@/pages/demo/plugins/i18n/demo1.vue'), meta: { ...meta, title: '多国语示例 1' } },
+      { path: 'i18n/demo2', name: `${pre}i18n-demo2`, component: () => import('@/pages/demo/plugins/i18n/demo2.vue'), meta: { ...meta, title: '多国语示例 2' } },
       { path: 'import/csv', name: `${pre}import-csv`, component: () => import('@/pages/demo/plugins/import/csv.vue'), meta: { ...meta, title: '导入 csv' } },
       { path: 'import/xlsx', name: `${pre}import-xlsx`, component: () => import('@/pages/demo/plugins/import/xlsx.vue'), meta: { ...meta, title: '导入 xlsx' } },
       { path: 'index', name: `${pre}index`, component: () => import('@/pages/demo/plugins/index'), meta: { ...meta, title: '插件首页' } },
@@ -91,53 +75,53 @@ const frameIn = [
     name: 'demo-charts',
     meta,
     redirect: { name: 'demo-charts-index' },
-    component: () => import('@/components/core/d2-layout-main'),
+    component: layoutHeaderAside,
     children: (pre => [
       { path: 'index', name: `${pre}index`, component: () => import('@/pages/demo/charts/index'), meta: { ...meta, title: '图表首页' } },
-      { path: 'list/line/demo1', name: `${pre}list-line-demo1`, component: () => import('@/pages/demo/charts/list/line/demo1/index.vue'), meta: { ...meta, title: '折线图示例1' } },
-      { path: 'list/line/demo2', name: `${pre}list-line-demo2`, component: () => import('@/pages/demo/charts/list/line/demo2/index.vue'), meta: { ...meta, title: '折线图示例2' } },
-      { path: 'list/line/demo3', name: `${pre}list-line-demo3`, component: () => import('@/pages/demo/charts/list/line/demo3/index.vue'), meta: { ...meta, title: '折线图示例3' } },
-      { path: 'list/line/demo4', name: `${pre}list-line-demo4`, component: () => import('@/pages/demo/charts/list/line/demo4/index.vue'), meta: { ...meta, title: '折线图示例4' } },
-      { path: 'list/line/demo5', name: `${pre}list-line-demo5`, component: () => import('@/pages/demo/charts/list/line/demo5/index.vue'), meta: { ...meta, title: '折线图示例5' } },
-      { path: 'list/histogram/demo1', name: `${pre}list-histogram-demo1`, component: () => import('@/pages/demo/charts/list/histogram/demo1/index.vue'), meta: { ...meta, title: '柱状图示例1' } },
-      { path: 'list/histogram/demo2', name: `${pre}list-histogram-demo2`, component: () => import('@/pages/demo/charts/list/histogram/demo2/index.vue'), meta: { ...meta, title: '柱状图示例2' } },
-      { path: 'list/histogram/demo3', name: `${pre}list-histogram-demo3`, component: () => import('@/pages/demo/charts/list/histogram/demo3/index.vue'), meta: { ...meta, title: '柱状图示例3' } },
-      { path: 'list/histogram/demo4', name: `${pre}list-histogram-demo4`, component: () => import('@/pages/demo/charts/list/histogram/demo4/index.vue'), meta: { ...meta, title: '柱状图示例4' } },
-      { path: 'list/histogram/demo5', name: `${pre}list-histogram-demo5`, component: () => import('@/pages/demo/charts/list/histogram/demo5/index.vue'), meta: { ...meta, title: '柱状图示例5' } },
-      { path: 'list/histogram/demo6', name: `${pre}list-histogram-demo6`, component: () => import('@/pages/demo/charts/list/histogram/demo6/index.vue'), meta: { ...meta, title: '柱状图示例6' } },
-      { path: 'list/bar/demo1', name: `${pre}list-bar-demo1`, component: () => import('@/pages/demo/charts/list/bar/demo1/index.vue'), meta: { ...meta, title: '条形图示例1' } },
-      { path: 'list/bar/demo2', name: `${pre}list-bar-demo2`, component: () => import('@/pages/demo/charts/list/bar/demo2/index.vue'), meta: { ...meta, title: '条形图示例2' } },
-      { path: 'list/bar/demo3', name: `${pre}list-bar-demo3`, component: () => import('@/pages/demo/charts/list/bar/demo3/index.vue'), meta: { ...meta, title: '条形图示例3' } },
-      { path: 'list/bar/demo4', name: `${pre}list-bar-demo4`, component: () => import('@/pages/demo/charts/list/bar/demo4/index.vue'), meta: { ...meta, title: '条形图示例4' } },
-      { path: 'list/bar/demo5', name: `${pre}list-bar-demo5`, component: () => import('@/pages/demo/charts/list/bar/demo5/index.vue'), meta: { ...meta, title: '条形图示例5' } },
-      { path: 'list/pie/demo1', name: `${pre}list-pie-demo1`, component: () => import('@/pages/demo/charts/list/pie/demo1/index.vue'), meta: { ...meta, title: '饼图示例1' } },
-      { path: 'list/pie/demo2', name: `${pre}list-pie-demo2`, component: () => import('@/pages/demo/charts/list/pie/demo2/index.vue'), meta: { ...meta, title: '饼图示例2' } },
-      { path: 'list/pie/demo3', name: `${pre}list-pie-demo3`, component: () => import('@/pages/demo/charts/list/pie/demo3/index.vue'), meta: { ...meta, title: '饼图示例3' } },
-      { path: 'list/pie/demo4', name: `${pre}list-pie-demo4`, component: () => import('@/pages/demo/charts/list/pie/demo4/index.vue'), meta: { ...meta, title: '饼图示例4' } },
-      { path: 'list/pie/demo5', name: `${pre}list-pie-demo5`, component: () => import('@/pages/demo/charts/list/pie/demo5/index.vue'), meta: { ...meta, title: '饼图示例5' } },
-      { path: 'list/pie/demo6', name: `${pre}list-pie-demo6`, component: () => import('@/pages/demo/charts/list/pie/demo6/index.vue'), meta: { ...meta, title: '饼图示例6' } },
-      { path: 'list/ring/demo1', name: `${pre}list-ring-demo1`, component: () => import('@/pages/demo/charts/list/ring/demo1/index.vue'), meta: { ...meta, title: '环图示例1' } },
-      { path: 'list/ring/demo2', name: `${pre}list-ring-demo2`, component: () => import('@/pages/demo/charts/list/ring/demo2/index.vue'), meta: { ...meta, title: '环图示例2' } },
-      { path: 'list/ring/demo3', name: `${pre}list-ring-demo3`, component: () => import('@/pages/demo/charts/list/ring/demo3/index.vue'), meta: { ...meta, title: '环图示例3' } },
-      { path: 'list/ring/demo4', name: `${pre}list-ring-demo4`, component: () => import('@/pages/demo/charts/list/ring/demo4/index.vue'), meta: { ...meta, title: '环图示例4' } },
-      { path: 'list/ring/demo5', name: `${pre}list-ring-demo5`, component: () => import('@/pages/demo/charts/list/ring/demo5/index.vue'), meta: { ...meta, title: '环图示例5' } },
-      { path: 'list/waterfall/demo1', name: `${pre}list-waterfall-demo1`, component: () => import('@/pages/demo/charts/list/waterfall/demo1/index.vue'), meta: { ...meta, title: '瀑布图示例1' } },
-      { path: 'list/funnel/demo1', name: `${pre}list-funnel-demo1`, component: () => import('@/pages/demo/charts/list/funnel/demo1/index.vue'), meta: { ...meta, title: '漏斗图示例1' } },
-      { path: 'list/funnel/demo2', name: `${pre}list-funnel-demo2`, component: () => import('@/pages/demo/charts/list/funnel/demo2/index.vue'), meta: { ...meta, title: '漏斗图示例2' } },
-      { path: 'list/radar/demo1', name: `${pre}list-radar-demo1`, component: () => import('@/pages/demo/charts/list/radar/demo1/index.vue'), meta: { ...meta, title: '雷达图示例1' } },
-      { path: 'list/map/demo1', name: `${pre}list-map-demo1`, component: () => import('@/pages/demo/charts/list/map/demo1/index.vue'), meta: { ...meta, title: '地图示例1' } },
-      { path: 'list/map/demo2', name: `${pre}list-map-demo2`, component: () => import('@/pages/demo/charts/list/map/demo2/index.vue'), meta: { ...meta, title: '地图示例2' } },
-      { path: 'list/map/demo3', name: `${pre}list-map-demo3`, component: () => import('@/pages/demo/charts/list/map/demo3/index.vue'), meta: { ...meta, title: '地图示例3' } },
-      { path: 'list/sankey/demo1', name: `${pre}list-sankey-demo1`, component: () => import('@/pages/demo/charts/list/sankey/demo1/index.vue'), meta: { ...meta, title: '桑基图示例1' } },
-      { path: 'list/heatmap/demo1', name: `${pre}list-heatmap-demo1`, component: () => import('@/pages/demo/charts/list/heatmap/demo1/index.vue'), meta: { ...meta, title: '热力图示例1' } },
-      { path: 'list/heatmap/demo2', name: `${pre}list-heatmap-demo2`, component: () => import('@/pages/demo/charts/list/heatmap/demo2/index.vue'), meta: { ...meta, title: '热力图示例2' } },
-      { path: 'list/scatter/demo1', name: `${pre}list-scatter-demo1`, component: () => import('@/pages/demo/charts/list/scatter/demo1/index.vue'), meta: { ...meta, title: '散点图示例1' } },
-      { path: 'list/scatter/demo2', name: `${pre}list-scatter-demo2`, component: () => import('@/pages/demo/charts/list/scatter/demo2/index.vue'), meta: { ...meta, title: '散点图示例2' } },
-      { path: 'list/candle/demo1', name: `${pre}list-candle-demo1`, component: () => import('@/pages/demo/charts/list/candle/demo1/index.vue'), meta: { ...meta, title: 'K线图示例1' } },
-      { path: 'list/candle/demo2', name: `${pre}list-candle-demo2`, component: () => import('@/pages/demo/charts/list/candle/demo2/index.vue'), meta: { ...meta, title: 'K线图示例2' } },
-      { path: 'list/candle/demo3', name: `${pre}list-candle-demo3`, component: () => import('@/pages/demo/charts/list/candle/demo3/index.vue'), meta: { ...meta, title: 'K线图示例3' } },
-      { path: 'list/gauge/demo1', name: `${pre}list-gauge-demo1`, component: () => import('@/pages/demo/charts/list/gauge/demo1/index.vue'), meta: { ...meta, title: '仪表盘示例1' } },
-      { path: 'list/tree/demo1', name: `${pre}list-tree-demo1`, component: () => import('@/pages/demo/charts/list/tree/demo1/index.vue'), meta: { ...meta, title: '树图示例1' } }
+      { path: 'list/line/demo1', name: `${pre}list-line-demo1`, component: () => import('@/pages/demo/charts/list/line/demo1/index.vue'), meta: { ...meta, title: '折线图示例 1' } },
+      { path: 'list/line/demo2', name: `${pre}list-line-demo2`, component: () => import('@/pages/demo/charts/list/line/demo2/index.vue'), meta: { ...meta, title: '折线图示例 2' } },
+      { path: 'list/line/demo3', name: `${pre}list-line-demo3`, component: () => import('@/pages/demo/charts/list/line/demo3/index.vue'), meta: { ...meta, title: '折线图示例 3' } },
+      { path: 'list/line/demo4', name: `${pre}list-line-demo4`, component: () => import('@/pages/demo/charts/list/line/demo4/index.vue'), meta: { ...meta, title: '折线图示例 4' } },
+      { path: 'list/line/demo5', name: `${pre}list-line-demo5`, component: () => import('@/pages/demo/charts/list/line/demo5/index.vue'), meta: { ...meta, title: '折线图示例 5' } },
+      { path: 'list/histogram/demo1', name: `${pre}list-histogram-demo1`, component: () => import('@/pages/demo/charts/list/histogram/demo1/index.vue'), meta: { ...meta, title: '柱状图示例 1' } },
+      { path: 'list/histogram/demo2', name: `${pre}list-histogram-demo2`, component: () => import('@/pages/demo/charts/list/histogram/demo2/index.vue'), meta: { ...meta, title: '柱状图示例 2' } },
+      { path: 'list/histogram/demo3', name: `${pre}list-histogram-demo3`, component: () => import('@/pages/demo/charts/list/histogram/demo3/index.vue'), meta: { ...meta, title: '柱状图示例 3' } },
+      { path: 'list/histogram/demo4', name: `${pre}list-histogram-demo4`, component: () => import('@/pages/demo/charts/list/histogram/demo4/index.vue'), meta: { ...meta, title: '柱状图示例 4' } },
+      { path: 'list/histogram/demo5', name: `${pre}list-histogram-demo5`, component: () => import('@/pages/demo/charts/list/histogram/demo5/index.vue'), meta: { ...meta, title: '柱状图示例 5' } },
+      { path: 'list/histogram/demo6', name: `${pre}list-histogram-demo6`, component: () => import('@/pages/demo/charts/list/histogram/demo6/index.vue'), meta: { ...meta, title: '柱状图示例 6' } },
+      { path: 'list/bar/demo1', name: `${pre}list-bar-demo1`, component: () => import('@/pages/demo/charts/list/bar/demo1/index.vue'), meta: { ...meta, title: '条形图示例 1' } },
+      { path: 'list/bar/demo2', name: `${pre}list-bar-demo2`, component: () => import('@/pages/demo/charts/list/bar/demo2/index.vue'), meta: { ...meta, title: '条形图示例 2' } },
+      { path: 'list/bar/demo3', name: `${pre}list-bar-demo3`, component: () => import('@/pages/demo/charts/list/bar/demo3/index.vue'), meta: { ...meta, title: '条形图示例 3' } },
+      { path: 'list/bar/demo4', name: `${pre}list-bar-demo4`, component: () => import('@/pages/demo/charts/list/bar/demo4/index.vue'), meta: { ...meta, title: '条形图示例 4' } },
+      { path: 'list/bar/demo5', name: `${pre}list-bar-demo5`, component: () => import('@/pages/demo/charts/list/bar/demo5/index.vue'), meta: { ...meta, title: '条形图示例 5' } },
+      { path: 'list/pie/demo1', name: `${pre}list-pie-demo1`, component: () => import('@/pages/demo/charts/list/pie/demo1/index.vue'), meta: { ...meta, title: '饼图示例 1' } },
+      { path: 'list/pie/demo2', name: `${pre}list-pie-demo2`, component: () => import('@/pages/demo/charts/list/pie/demo2/index.vue'), meta: { ...meta, title: '饼图示例 2' } },
+      { path: 'list/pie/demo3', name: `${pre}list-pie-demo3`, component: () => import('@/pages/demo/charts/list/pie/demo3/index.vue'), meta: { ...meta, title: '饼图示例 3' } },
+      { path: 'list/pie/demo4', name: `${pre}list-pie-demo4`, component: () => import('@/pages/demo/charts/list/pie/demo4/index.vue'), meta: { ...meta, title: '饼图示例 4' } },
+      { path: 'list/pie/demo5', name: `${pre}list-pie-demo5`, component: () => import('@/pages/demo/charts/list/pie/demo5/index.vue'), meta: { ...meta, title: '饼图示例 5' } },
+      { path: 'list/pie/demo6', name: `${pre}list-pie-demo6`, component: () => import('@/pages/demo/charts/list/pie/demo6/index.vue'), meta: { ...meta, title: '饼图示例 6' } },
+      { path: 'list/ring/demo1', name: `${pre}list-ring-demo1`, component: () => import('@/pages/demo/charts/list/ring/demo1/index.vue'), meta: { ...meta, title: '环图示例 1' } },
+      { path: 'list/ring/demo2', name: `${pre}list-ring-demo2`, component: () => import('@/pages/demo/charts/list/ring/demo2/index.vue'), meta: { ...meta, title: '环图示例 2' } },
+      { path: 'list/ring/demo3', name: `${pre}list-ring-demo3`, component: () => import('@/pages/demo/charts/list/ring/demo3/index.vue'), meta: { ...meta, title: '环图示例 3' } },
+      { path: 'list/ring/demo4', name: `${pre}list-ring-demo4`, component: () => import('@/pages/demo/charts/list/ring/demo4/index.vue'), meta: { ...meta, title: '环图示例 4' } },
+      { path: 'list/ring/demo5', name: `${pre}list-ring-demo5`, component: () => import('@/pages/demo/charts/list/ring/demo5/index.vue'), meta: { ...meta, title: '环图示例 5' } },
+      { path: 'list/waterfall/demo1', name: `${pre}list-waterfall-demo1`, component: () => import('@/pages/demo/charts/list/waterfall/demo1/index.vue'), meta: { ...meta, title: '瀑布图示例 1' } },
+      { path: 'list/funnel/demo1', name: `${pre}list-funnel-demo1`, component: () => import('@/pages/demo/charts/list/funnel/demo1/index.vue'), meta: { ...meta, title: '漏斗图示例 1' } },
+      { path: 'list/funnel/demo2', name: `${pre}list-funnel-demo2`, component: () => import('@/pages/demo/charts/list/funnel/demo2/index.vue'), meta: { ...meta, title: '漏斗图示例 2' } },
+      { path: 'list/radar/demo1', name: `${pre}list-radar-demo1`, component: () => import('@/pages/demo/charts/list/radar/demo1/index.vue'), meta: { ...meta, title: '雷达图示例 1' } },
+      { path: 'list/map/demo1', name: `${pre}list-map-demo1`, component: () => import('@/pages/demo/charts/list/map/demo1/index.vue'), meta: { ...meta, title: '地图示例 1' } },
+      { path: 'list/map/demo2', name: `${pre}list-map-demo2`, component: () => import('@/pages/demo/charts/list/map/demo2/index.vue'), meta: { ...meta, title: '地图示例 2' } },
+      { path: 'list/map/demo3', name: `${pre}list-map-demo3`, component: () => import('@/pages/demo/charts/list/map/demo3/index.vue'), meta: { ...meta, title: '地图示例 3' } },
+      { path: 'list/sankey/demo1', name: `${pre}list-sankey-demo1`, component: () => import('@/pages/demo/charts/list/sankey/demo1/index.vue'), meta: { ...meta, title: '桑基图示例 1' } },
+      { path: 'list/heatmap/demo1', name: `${pre}list-heatmap-demo1`, component: () => import('@/pages/demo/charts/list/heatmap/demo1/index.vue'), meta: { ...meta, title: '热力图示例 1' } },
+      { path: 'list/heatmap/demo2', name: `${pre}list-heatmap-demo2`, component: () => import('@/pages/demo/charts/list/heatmap/demo2/index.vue'), meta: { ...meta, title: '热力图示例 2' } },
+      { path: 'list/scatter/demo1', name: `${pre}list-scatter-demo1`, component: () => import('@/pages/demo/charts/list/scatter/demo1/index.vue'), meta: { ...meta, title: '散点图示例 1' } },
+      { path: 'list/scatter/demo2', name: `${pre}list-scatter-demo2`, component: () => import('@/pages/demo/charts/list/scatter/demo2/index.vue'), meta: { ...meta, title: '散点图示例 2' } },
+      { path: 'list/candle/demo1', name: `${pre}list-candle-demo1`, component: () => import('@/pages/demo/charts/list/candle/demo1/index.vue'), meta: { ...meta, title: 'K线图示例 1' } },
+      { path: 'list/candle/demo2', name: `${pre}list-candle-demo2`, component: () => import('@/pages/demo/charts/list/candle/demo2/index.vue'), meta: { ...meta, title: 'K线图示例 2' } },
+      { path: 'list/candle/demo3', name: `${pre}list-candle-demo3`, component: () => import('@/pages/demo/charts/list/candle/demo3/index.vue'), meta: { ...meta, title: 'K线图示例 3' } },
+      { path: 'list/gauge/demo1', name: `${pre}list-gauge-demo1`, component: () => import('@/pages/demo/charts/list/gauge/demo1/index.vue'), meta: { ...meta, title: '仪表盘示例 1' } },
+      { path: 'list/tree/demo1', name: `${pre}list-tree-demo1`, component: () => import('@/pages/demo/charts/list/tree/demo1/index.vue'), meta: { ...meta, title: '树图示例 1' } }
     ])('demo-charts-')
   },
   {
@@ -145,14 +129,17 @@ const frameIn = [
     name: 'demo-components',
     meta,
     redirect: { name: 'demo-components-index' },
-    component: () => import('@/components/core/d2-layout-main'),
+    component: layoutHeaderAside,
     children: (pre => [
-      { path: 'bigdata-table', name: `${pre}bigdata-table`, component: () => import('@/pages/demo/components/bigdata-table'), meta: { ...meta, title: '百万级数据表格' } },
       { path: 'container/full', name: `${pre}container-full`, component: () => import('@/pages/demo/components/container/full.vue'), meta: { ...meta, title: '布局组件 填充' } },
+      { path: 'container/full-slot', name: `${pre}container-full-slot`, component: () => import('@/pages/demo/components/container/full-slot.vue'), meta: { ...meta, title: '布局组件 填充 插槽' } },
       { path: 'container/full-bs', name: `${pre}container-full-bs`, component: () => import('@/pages/demo/components/container/full-bs.vue'), meta: { ...meta, title: '布局组件 填充 滚动优化' } },
       { path: 'container/ghost', name: `${pre}container-ghost`, component: () => import('@/pages/demo/components/container/ghost.vue'), meta: { ...meta, title: '布局组件 隐形' } },
-      { path: 'container/ghost-header', name: `${pre}container-ghost-header`, component: () => import('@/pages/demo/components/container/ghost-header.vue'), meta: { ...meta, title: '布局组件 隐形带头部' } },
+      { path: 'container/ghost-slot', name: `${pre}container-ghost-slot`, component: () => import('@/pages/demo/components/container/ghost-slot.vue'), meta: { ...meta, title: '布局组件 隐形 插槽' } },
+      { path: 'container/ghost-bs', name: `${pre}container-ghost-bs`, component: () => import('@/pages/demo/components/container/ghost-bs.vue'), meta: { ...meta, title: '布局组件 隐形 滚动优化' } },
       { path: 'container/card', name: `${pre}container-card`, component: () => import('@/pages/demo/components/container/card.vue'), meta: { ...meta, title: '布局组件 卡片' } },
+      { path: 'container/card-slot', name: `${pre}container-card-slot`, component: () => import('@/pages/demo/components/container/card-slot.vue'), meta: { ...meta, title: '布局组件 卡片 插槽' } },
+      { path: 'container/card-bs', name: `${pre}container-card-bs`, component: () => import('@/pages/demo/components/container/card-bs.vue'), meta: { ...meta, title: '布局组件 卡片 滚动优化' } },
       { path: 'contextmenu/simple', name: `${pre}contextmenu-simple`, component: () => import('@/pages/demo/components/contextmenu/simple.vue'), meta: { ...meta, title: '右键菜单 基础' } },
       { path: 'contextmenu/divier', name: `${pre}contextmenu-divier`, component: () => import('@/pages/demo/components/contextmenu/divier.vue'), meta: { ...meta, title: '右键菜单 分割线' } },
       { path: 'contextmenu/group', name: `${pre}contextmenu-group`, component: () => import('@/pages/demo/components/contextmenu/group.vue'), meta: { ...meta, title: '右键菜单 分组' } },
@@ -180,7 +167,7 @@ const frameIn = [
     name: 'demo-element',
     meta,
     redirect: { name: 'demo-element-index' },
-    component: () => import('@/components/core/d2-layout-main'),
+    component: layoutHeaderAside,
     children: (pre => [
       { path: 'basic-layout', name: `${pre}basic-layout`, component: () => import('@/pages/demo/element/basic-layout'), meta: { ...meta, title: 'Element 布局' } },
       { path: 'basic-container', name: `${pre}basic-container`, component: () => import('@/pages/demo/element/basic-container'), meta: { ...meta, title: 'Element 布局容器' } },
@@ -228,18 +215,17 @@ const frameIn = [
       { path: 'others-collapse', name: `${pre}others-collapse`, component: () => import('@/pages/demo/element/others-collapse'), meta: { ...meta, title: 'Element 折叠面板' } },
       { path: 'index', name: `${pre}index`, component: () => import('@/pages/demo/element/index'), meta: { ...meta, title: 'ElementUI' } }
     ])('demo-element-')
-  }
-]
-
-/**
- * 错误页面
- */
-const errorPage = [
-  // 404
+  },
   {
-    path: '*',
-    name: '404',
-    component: () => import('@/pages/core/404')
+    path: '/demo/business',
+    name: 'demo-business',
+    meta,
+    redirect: { name: 'demo-business-index' },
+    component: layoutHeaderAside,
+    children: (pre => [
+      { path: 'index', name: `${pre}index`, component: () => import('@/pages/demo/business/index'), meta: { ...meta, title: '示例首页' } },
+      { path: 'table/1', name: `${pre}table-1`, component: () => import('@/pages/demo/business/table/1'), meta: { ...meta, title: '表格 1' } }
+    ])('demo-business-')
   }
 ]
 
@@ -251,7 +237,19 @@ const frameOut = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/pages/core/login')
+    component: () => import('@/pages/login')
+  }
+]
+
+/**
+ * 错误页面
+ */
+const errorPage = [
+  // 404
+  {
+    path: '*',
+    name: '404',
+    component: () => import('@/pages/error-page-404')
   }
 ]
 

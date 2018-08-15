@@ -1,6 +1,5 @@
 <template>
-  <d2-container type="ghost" class="demo-layout-grid">
-    <template slot="header">网格布局</template>
+  <d2-container type="full" class="page">
     <d2-grid-layout
       v-bind="layout"
       @layout-updated="layoutUpdatedHandler">
@@ -56,6 +55,17 @@ export default {
     this.showInfo()
   },
   methods: {
+    log (arg1 = 'log', ...logs) {
+      if (logs.length === 0) {
+        console.log(arg1)
+      } else {
+        console.group(arg1)
+        logs.forEach(e => {
+          console.log(e)
+        })
+        console.groupEnd()
+      }
+    },
     // 显示提示
     showInfo () {
       this.$notify({
@@ -72,25 +82,27 @@ export default {
       console.groupEnd()
     },
     resizeHandler (i, newH, newW) {
-      this.$log('resizeHandler', `i: ${i}, newH: ${newH}, newW: ${newW}`)
+      this.log('resizeHandler', `i: ${i}, newH: ${newH}, newW: ${newW}`)
     },
     moveHandler (i, newX, newY) {
-      this.$log('moveHandler', `i: ${i}, newX: ${newX}, newY: ${newY}`)
+      this.log('moveHandler', `i: ${i}, newX: ${newX}, newY: ${newY}`)
     },
     resizedHandler (i, newH, newW, newHPx, newWPx) {
-      this.$log('resizedHandler', `i: ${i}, newH: ${newH}, newW: ${newW}, newHPx: ${newHPx}, newWPx: ${newWPx}`)
+      this.log('resizedHandler', `i: ${i}, newH: ${newH}, newW: ${newW}, newHPx: ${newHPx}, newWPx: ${newWPx}`)
     },
     movedHandler (i, newX, newY) {
-      this.$log('movedHandler', `i: ${i}, newX: ${newX}, newY: ${newY}`)
+      this.log('movedHandler', `i: ${i}, newX: ${newX}, newY: ${newY}`)
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '~@/assets/style/public.scss';
-.demo-layout-grid {
+.page {
   .vue-grid-layout {
+    background-color: $color-bg;
+    border-radius: 4px;
     margin: -10px;
     .el-card {
       height: 100%;
@@ -105,4 +117,3 @@ export default {
   }
 }
 </style>
-

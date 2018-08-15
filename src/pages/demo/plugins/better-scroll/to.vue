@@ -1,5 +1,5 @@
 <template>
-  <d2-container type="full">
+  <d2-container>
     <template slot="header">滚动定位</template>
     <el-row :gutter="20">
       <el-col :span="8">
@@ -36,7 +36,7 @@
       </el-col>
     </el-row>
     <template slot="footer">
-      <d2-demo-link-btn title="文档" link="http://ustbhuangyi.github.io/better-scroll/doc/zh-hans/"/>
+      <d2-link-btn title="文档" link="http://ustbhuangyi.github.io/better-scroll/doc/zh-hans/"/>
     </template>
   </d2-container>
 </template>
@@ -104,4 +104,3 @@ export default {
   }
 }
 </style>
-

@@ -1,10 +1,10 @@
 <template>
   <d2-container>
-    <d2-demo-page-header slot="header" title="基本示例"/>
+    <template slot="header">基本示例</template>
     <d2-mde
       v-model="text"
       class="mde"/>
-    <el-card shadow="never">
+    <el-card shadow="never" class="d2-card">
       <pre>{{text}}</pre>
     </el-card>
   </d2-container>

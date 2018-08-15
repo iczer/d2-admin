@@ -8,7 +8,7 @@
           <el-radio v-model="radio" label="1">备选项</el-radio>
           <el-radio v-model="radio" label="2">备选项</el-radio>
         </el-row>
-        
+
         <h1>禁用状态</h1>
         <el-row>
           <el-radio disabled v-model="radio" label="1">备选项</el-radio>
@@ -97,4 +97,3 @@ export default {
   }
 }
 </script>
-

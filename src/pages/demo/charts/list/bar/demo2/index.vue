@@ -1,11 +1,11 @@
 <template>
-  <d2-container type="full">
+  <d2-container>
     <template slot="header">指定指标维度</template>
     <div class="inner">
       <ve-bar :data="chartData" :settings="chartSettings" v-bind="pubSetting"></ve-bar>
     </div>
     <template slot="footer">
-      <d2-demo-link-btn title="更多示例和文档" link="https://v-charts.js.org"/>
+      <d2-link-btn title="更多示例和文档" link="https://v-charts.js.org"/>
     </template>
   </d2-container>
 </template>
